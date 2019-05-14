@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onClick(view: View) {
-        var nameView = findViewById(R.id.nameEditText) as EditText
+        var nameView = findViewById<EditText>(R.id.nameEditText) as EditText
         var name = nameView.getText().toString()
         Log.i("info", "button clicked!")
         Log.i("value", name)
@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onClickFlip(view: View) {
-        var imageView = findViewById(R.id.imageView) as ImageView
+        var imageView = findViewById<ImageView>(R.id.imageView) as ImageView
         imageView.setImageResource(R.drawable.skogafoss)
     }
 }
