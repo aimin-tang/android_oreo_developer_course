@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
+    var SkogaGoal = 0.0f
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +26,9 @@ class MainActivity : AppCompatActivity() {
 
     fun onClickFlip(view: View) {
         var imageView = findViewById<ImageView>(R.id.imageView) as ImageView
-        imageView.setImageResource(R.drawable.skogafoss)
+        imageView.animate().alpha(SkogaGoal).setDuration(2000L)
+        var imageView2 = findViewById<ImageView>(R.id.imageView2) as ImageView
+        imageView2.animate().alpha(1.0f - SkogaGoal).setDuration(2000L)
+        SkogaGoal = 1.0f - SkogaGoal
     }
 }
