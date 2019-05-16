@@ -10,11 +10,12 @@ import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
     // generate final number
-    var finalNumber = Random.nextInt(1, 20)
+    var finalNumber = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        finalNumber = Random.nextInt(1, 20)
     }
 
     fun onClick(view: View) {
