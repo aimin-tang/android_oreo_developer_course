@@ -11,6 +11,7 @@ import android.widget.Toast
 class MainActivity : AppCompatActivity() {
 
     var nextPlayer = 0
+    var msg = ""
     var statusList = arrayListOf<Int>()
     var endGame = arrayListOf<List<Int>>()
 
@@ -30,6 +31,10 @@ class MainActivity : AppCompatActivity() {
         Log.i("info", "cell clicked!")
         var stoneView = view as ImageView
         var tag = Integer.parseInt(stoneView.tag as String)
+        if (statusList[tag] != -1 || msg != "") {
+            // cell already clicked
+            return
+        }
         if (nextPlayer == 0) {
             stoneView.setImageResource(R.drawable.yellow_circle)
             statusList[tag] = 0
@@ -41,15 +46,17 @@ class MainActivity : AppCompatActivity() {
         Log.i("info", statusList.joinToString())
         stoneView.animate().rotation(360f).translationYBy(500f).setDuration(500)
 
-        var msg = isEnd()
+        msg = isEnd()
         if (msg != "") {
             Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
-            onNewGame()
             nextPlayer = 0
         } else {
             nextPlayer = 1 - nextPlayer
         }
+    }
 
+    fun againClicked(view: View) {
+        onNewGame()
     }
 
     fun isEnd(): String {
@@ -83,5 +90,8 @@ class MainActivity : AppCompatActivity() {
             var cell = grid.getChildAt(i) as ImageView
             cell.setImageResource(0)
         }
+
+        nextPlayer = 0
+        msg = ""
     }
 }
